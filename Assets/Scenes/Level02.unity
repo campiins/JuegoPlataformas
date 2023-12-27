@@ -33530,6 +33530,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 152177315002609111}
     - target: {fileID: 2159552123755107254, guid: b9407fe63f00d1c45bdfae2dab6cfb8b, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: fd38414e1b5daec4f8729c0a860d10a0, type: 3}
+    - target: {fileID: 2159552123755107254, guid: b9407fe63f00d1c45bdfae2dab6cfb8b, type: 3}
       propertyPath: skeletonDeathSound
       value: 
       objectReference: {fileID: 8300000, guid: fd38414e1b5daec4f8729c0a860d10a0, type: 3}
@@ -33737,6 +33741,10 @@ PrefabInstance:
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 0.67
       objectReference: {fileID: 0}
+    - target: {fileID: 9188114492201013614, guid: e4a03c916a3508d44b61e2b3fc823afe, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
     - target: {fileID: 9188114492201013614, guid: e4a03c916a3508d44b61e2b3fc823afe, type: 3}
       propertyPath: batDeathSound
       value: 
@@ -34307,6 +34315,10 @@ PrefabInstance:
       propertyPath: throwSpellSound
       value: 
       objectReference: {fileID: 8300000, guid: 9cfc67dcc6632ec43b9cb6cfb94460e7, type: 3}
+    - target: {fileID: 8749092587034816359, guid: ef535e96b93c78e4cb8bba4811fd501c, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f7278c0c079e3f242a82ba06aff61179, type: 3}
     - target: {fileID: 8749092587034816359, guid: ef535e96b93c78e4cb8bba4811fd501c, type: 3}
       propertyPath: wizardDeathSound
       value: 

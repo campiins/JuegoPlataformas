@@ -12,10 +12,7 @@ public class EnemyHealthSystem : MonoBehaviour
 
     [Header("Audio")]
 
-    [SerializeField] private AudioClip batDeathSound;
-    [SerializeField] private AudioClip slimeDeathSound;
-    [SerializeField] private AudioClip skeletonDeathSound;
-    [SerializeField] private AudioClip wizardDeathSound;
+    [SerializeField] private AudioClip deathSound;
 
     public event Action OnEnemyDeath;
 
@@ -66,7 +63,7 @@ public class EnemyHealthSystem : MonoBehaviour
             if ( batAnimator != null && isDead)
             {
                 batAnimator.SetTrigger("explosion");
-                audioSource.PlayOneShot(batDeathSound, 1f);
+                audioSource.PlayOneShot(deathSound, 1f);
             }
             else
             {
@@ -81,7 +78,7 @@ public class EnemyHealthSystem : MonoBehaviour
                 skeletonAnimator.SetBool("walking", false);
                 skeletonAnimator.SetBool("attacking", false);
                 skeletonAnimator.SetBool("death", true);
-                audioSource.PlayOneShot(skeletonDeathSound, 0.25f);
+                audioSource.PlayOneShot(deathSound, 0.25f);
             }
             else
             {
@@ -95,7 +92,7 @@ public class EnemyHealthSystem : MonoBehaviour
             {
                 slimeAnimator.SetBool("attacking", false);
                 slimeAnimator.SetBool("death", true);
-                audioSource.PlayOneShot(slimeDeathSound, 0.5f);
+                audioSource.PlayOneShot(deathSound, 0.5f);
             }
             else 
             {
@@ -108,7 +105,7 @@ public class EnemyHealthSystem : MonoBehaviour
             if (wizardAnimator != null && isDead)
             {
                 wizardAnimator.SetBool("death", true);
-                audioSource.PlayOneShot(wizardDeathSound, 1f);
+                audioSource.PlayOneShot(deathSound, 1f);
             }
         }
         else

@@ -228,6 +228,10 @@ PrefabInstance:
       value: 0.67
       objectReference: {fileID: 0}
     - target: {fileID: 9188114492201013614, guid: e4a03c916a3508d44b61e2b3fc823afe, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
+    - target: {fileID: 9188114492201013614, guid: e4a03c916a3508d44b61e2b3fc823afe, type: 3}
       propertyPath: batDeathSound
       value: 
       objectReference: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
@@ -105117,6 +105121,10 @@ PrefabInstance:
       value: 0.67
       objectReference: {fileID: 0}
     - target: {fileID: 9188114492201013614, guid: e4a03c916a3508d44b61e2b3fc823afe, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
+    - target: {fileID: 9188114492201013614, guid: e4a03c916a3508d44b61e2b3fc823afe, type: 3}
       propertyPath: batDeathSound
       value: 
       objectReference: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
@@ -105145,6 +105153,10 @@ PrefabInstance:
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 0.67
       objectReference: {fileID: 0}
+    - target: {fileID: 7042687889286894580, guid: a1f05ce6e521de64eb18302fa583bb8e, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e8e4d4670a369ec4f9e05ada7da2b301, type: 3}
     - target: {fileID: 7042687889286894580, guid: a1f05ce6e521de64eb18302fa583bb8e, type: 3}
       propertyPath: slimeDeathSound
       value: 
@@ -105739,6 +105751,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7042687889286894580, guid: a1f05ce6e521de64eb18302fa583bb8e, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e8e4d4670a369ec4f9e05ada7da2b301, type: 3}
     - target: {fileID: 7042687889286894580, guid: a1f05ce6e521de64eb18302fa583bb8e, type: 3}
       propertyPath: slimeDeathSound
       value: 
