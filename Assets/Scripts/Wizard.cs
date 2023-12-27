@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wizard : MonoBehaviour
+public class Wizard : MonoBehaviour, IEnemyDeath
 {
     [Header("Attack")]
 
@@ -14,6 +14,7 @@ public class Wizard : MonoBehaviour
     [Header("Audio")]
 
     [SerializeField] private AudioClip throwSpellSound;
+    [SerializeField] private AudioClip deathSound;
 
     private Animator anim;
     private AudioSource audioSource;
@@ -89,6 +90,15 @@ public class Wizard : MonoBehaviour
         if (other.gameObject.CompareTag("PlayerDetection"))
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+    }
+
+    public void PlayDeathAnimation()
+    {
+        if (anim != null)
+        {
+            anim.SetBool("death", true);
+            audioSource.PlayOneShot(deathSound, 1f);
         }
     }
 }

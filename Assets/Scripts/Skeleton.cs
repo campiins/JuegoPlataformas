@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skeleton : MonoBehaviour
+public class Skeleton : MonoBehaviour, IEnemyDeath
 {
     [Header("Movement")]
 
@@ -29,6 +29,7 @@ public class Skeleton : MonoBehaviour
 
     [SerializeField] private AudioClip footstepSound;
     [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip deathSound;
 
     private bool isChasing = false;
     private float distanceToPlayer;
@@ -234,5 +235,16 @@ public class Skeleton : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
+    }
+
+    public void PlayDeathAnimation()
+    {
+        if (anim != null)
+        {
+            anim.SetBool("walking", false);
+            anim.SetBool("attacking", false);
+            anim.SetBool("death", true);
+            audioSource.PlayOneShot(deathSound, 0.25f);
+        }
     }
 }

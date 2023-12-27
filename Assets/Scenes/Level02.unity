@@ -33514,6 +33514,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 603287576563933588, guid: b9407fe63f00d1c45bdfae2dab6cfb8b, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: fd38414e1b5daec4f8729c0a860d10a0, type: 3}
+    - target: {fileID: 603287576563933588, guid: b9407fe63f00d1c45bdfae2dab6cfb8b, type: 3}
       propertyPath: attackSound
       value: 
       objectReference: {fileID: 8300000, guid: 1499a95307569354f8dd00198d8bdf2c, type: 3}
@@ -33661,6 +33665,10 @@ PrefabInstance:
       propertyPath: wingSound
       value: 
       objectReference: {fileID: 8300000, guid: 971451b9d96e8824e82ee7ea391ed583, type: 3}
+    - target: {fileID: 4224608237577696786, guid: e4a03c916a3508d44b61e2b3fc823afe, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
     - target: {fileID: 4224608237577696786, guid: e4a03c916a3508d44b61e2b3fc823afe, type: 3}
       propertyPath: attackSound
       value: 
@@ -34311,6 +34319,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7877202229762910249, guid: ef535e96b93c78e4cb8bba4811fd501c, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f7278c0c079e3f242a82ba06aff61179, type: 3}
     - target: {fileID: 7877202229762910249, guid: ef535e96b93c78e4cb8bba4811fd501c, type: 3}
       propertyPath: throwSpellSound
       value: 

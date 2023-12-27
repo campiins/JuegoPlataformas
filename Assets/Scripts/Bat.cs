@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bat : MonoBehaviour
+public class Bat : MonoBehaviour, IEnemyDeath
 {
     [Header("Movement")]
 
@@ -25,6 +25,7 @@ public class Bat : MonoBehaviour
 
     [SerializeField] private AudioClip wingSound;
     [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip deathSound;
 
     private bool isChasing = false;
 
@@ -209,5 +210,13 @@ public class Bat : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 
+    public void PlayDeathAnimation()
+    {
+        if (anim != null)
+        {
+            anim.SetTrigger("explosion");
+            audioSource.PlayOneShot(deathSound, 1f);
+        }
+    }
 }
 

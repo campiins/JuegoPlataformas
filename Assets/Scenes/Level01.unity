@@ -144,6 +144,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 971451b9d96e8824e82ee7ea391ed583, type: 3}
     - target: {fileID: 4224608237577696786, guid: e4a03c916a3508d44b61e2b3fc823afe, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
+    - target: {fileID: 4224608237577696786, guid: e4a03c916a3508d44b61e2b3fc823afe, type: 3}
       propertyPath: attackSound
       value: 
       objectReference: {fileID: 8300000, guid: a451c5dd5ecdf7e45bde88132fd52c5d, type: 3}
@@ -105017,6 +105021,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 971451b9d96e8824e82ee7ea391ed583, type: 3}
     - target: {fileID: 4224608237577696786, guid: e4a03c916a3508d44b61e2b3fc823afe, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
+    - target: {fileID: 4224608237577696786, guid: e4a03c916a3508d44b61e2b3fc823afe, type: 3}
       propertyPath: attackSound
       value: 
       objectReference: {fileID: 8300000, guid: a451c5dd5ecdf7e45bde88132fd52c5d, type: 3}
@@ -105205,6 +105213,10 @@ PrefabInstance:
       propertyPath: moveSound
       value: 
       objectReference: {fileID: 8300000, guid: f019178daef14a14d9214a48d47b2f11, type: 3}
+    - target: {fileID: 8355143860571615718, guid: a1f05ce6e521de64eb18302fa583bb8e, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e8e4d4670a369ec4f9e05ada7da2b301, type: 3}
     - target: {fileID: 8355143860571615718, guid: a1f05ce6e521de64eb18302fa583bb8e, type: 3}
       propertyPath: attackSound
       value: 
@@ -105803,6 +105815,10 @@ PrefabInstance:
       propertyPath: moveSound
       value: 
       objectReference: {fileID: 8300000, guid: f019178daef14a14d9214a48d47b2f11, type: 3}
+    - target: {fileID: 8355143860571615718, guid: a1f05ce6e521de64eb18302fa583bb8e, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e8e4d4670a369ec4f9e05ada7da2b301, type: 3}
     - target: {fileID: 8355143860571615718, guid: a1f05ce6e521de64eb18302fa583bb8e, type: 3}
       propertyPath: attackSound
       value: 

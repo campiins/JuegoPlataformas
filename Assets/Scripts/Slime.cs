@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime : MonoBehaviour
+public class Slime : MonoBehaviour, IEnemyDeath
 {
     [Header("Movement")]
 
@@ -24,6 +24,7 @@ public class Slime : MonoBehaviour
 
     [SerializeField] private AudioClip moveSound;
     [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip deathSound;
 
     private bool isChasing = false;
 
@@ -213,5 +214,15 @@ public class Slime : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
+    }
+
+    public void PlayDeathAnimation()
+    {
+        if (anim != null)
+        {
+            anim.SetBool("attacking", false);
+            anim.SetBool("death", true);
+            audioSource.PlayOneShot(deathSound, 0.5f);
+        }
     }
 }
