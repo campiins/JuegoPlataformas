@@ -22,11 +22,14 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float jumpPower;
     [SerializeField] private float doubleJumpPower;
-    private bool canDoubleJump;
+    [SerializeField] private float coyoteTime = 0.1f;
+    private bool canDoubleJump = false;
+    private bool inCoyoteTime = false;
+    private float coyoteTimeCounter;
 
     [SerializeField] private float dashPower;
     private bool canDash = true;
-    private bool isDashing;
+    private bool isDashing = false;
     [SerializeField] private float dashingTime = 0.2f;
     private float dashingCooldown = 0.5f;
 
@@ -85,6 +88,12 @@ public class PlayerController : MonoBehaviour
             {
                 if (!isGrounded) anim.SetBool("sliding", false);
                 return;
+            }
+
+            if (!isGrounded & inCoyoteTime)
+            {
+                coyoteTimeCounter += Time.deltaTime;
+                if (coyoteTimeCounter > coyoteTime) inCoyoteTime = false;
             }
 
             anim.SetFloat("yVelocity", rb.velocity.y);
@@ -160,7 +169,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            if (isGrounded || canDoubleJump) // Si está en el suelo o tiene doble salto
+            if (isGrounded || inCoyoteTime || canDoubleJump) // Si está en el suelo o tiene doble salto
             {
                 // Aplicar velocidad de salto
                 rb.velocity = new Vector2(rb.velocity.x, canDoubleJump ? doubleJumpPower : jumpPower);
@@ -196,6 +205,12 @@ public class PlayerController : MonoBehaviour
         if (colliders.Length > 0) isGrounded = true;
 
         anim.SetBool("jump", !isGrounded);
+
+        if (isGrounded)
+        {
+            inCoyoteTime = true;
+            coyoteTimeCounter = 0;
+        }
     }
 
     private void Dash()
