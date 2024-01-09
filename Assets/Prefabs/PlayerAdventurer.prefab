@@ -196,11 +196,11 @@ MonoBehaviour:
   wallSlidingSpeed: 1
   wallJumpingPower: {x: 10, y: 18}
   wallJumpingDuration: 0.4
-  wallCheck: {fileID: 0}
+  wallCheck: {fileID: 6029537979005778102}
   wallCheckSize: {x: 0.4, y: 1.5}
   whatIsWall:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   attackDamage: 15
   attackPoint: {fileID: 2828756744483673349}
   attackRadius: 1
