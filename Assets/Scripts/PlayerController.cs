@@ -15,23 +15,42 @@ public class PlayerController : MonoBehaviour
     private TrailRenderer trailRenderer;
 
     private float inputH;
+    private bool isFacingRight = true;
 
     [Header("Movement")]
 
     [SerializeField] private float movementSpeed;
 
-    [SerializeField] private float jumpPower;
-    [SerializeField] private float doubleJumpPower;
+    [Header("Jump")]
+
+    [SerializeField] private float jumpPower = 18f;
+    [SerializeField] private float doubleJumpPower = 20f;
     [SerializeField] private float coyoteTime = 0.1f;
     private bool canDoubleJump = false;
     private bool inCoyoteTime = false;
     private float coyoteTimeCounter;
 
+    [Header("Dash")]
+
     [SerializeField] private float dashPower;
+    [SerializeField] private float dashingTime = 0.2f;
     private bool canDash = true;
     private bool isDashing = false;
-    [SerializeField] private float dashingTime = 0.2f;
     private float dashingCooldown = 0.5f;
+
+    [Header("Wall Jump")]
+
+    [SerializeField] [Range(0.1f, 2f)] private float wallSlidingSpeed = 1f;
+    [SerializeField] private Vector2 wallJumpingPower = new Vector2(10f, 18f);
+    [SerializeField] private float wallJumpingDuration = 0.4f;
+    [SerializeField] private Transform wallCheck;
+    [SerializeField] private Vector2 wallCheckSize = new Vector2(0.4f, 1.5f);
+    [SerializeField] private LayerMask whatIsWall;
+    private bool isWalled = false;
+    private bool isWallSliding = false;
+    private bool isWallJumping = false;
+    private bool canWallJump = false;
+    private float wallJumpingDirection;
 
     [Header("Attack")]
 
@@ -43,8 +62,9 @@ public class PlayerController : MonoBehaviour
     [Header("Ground Check")]
 
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundCheckSize = 0.15f;
     [SerializeField] private LayerMask whatIsGround;
-    public bool isGrounded;
+    [HideInInspector] public bool isGrounded;
 
     private Vector3 respawnPoint;
 
@@ -81,7 +101,9 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update()
-    {    
+    {
+        inputH = Input.GetAxisRaw("Horizontal");
+
         if (!PlayerHealthSystem.Instance.isDead && !GameManager.Instance.gameCompleted)
         {
             if (isDashing)
@@ -96,45 +118,50 @@ public class PlayerController : MonoBehaviour
                 if (coyoteTimeCounter > coyoteTime) inCoyoteTime = false;
             }
 
+            if (isWalled && rb.velocity.x == 0 || isGrounded)
+            {
+                StopWallJumping();
+            }
+
             anim.SetFloat("yVelocity", rb.velocity.y);
-
-            Movement();
-
-            Jump();
 
             LaunchAttack();
 
+            Jump();
+
+            WallSlide();
+            WallJump();
+
+            if (!isWallSliding && !isWallJumping)
+            {
+                Movement();
+                Flip();
+            }
+
             Dash();
+
+            anim.SetBool("wallSliding", isWallSliding);
         }
     }
 
     void FixedUpdate()
     {
         GroundCheck();
+        WallCheck();
     }
 
     private void Movement()
     {
-        inputH = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(inputH * movementSpeed, rb.velocity.y);
         if (inputH != 0) // Hay movimiento.
         {
             anim.SetBool("running", true);
-            if (inputH > 0) // Dcha.
-            {
-                transform.eulerAngles = Vector3.zero;
-            }
-            else // Izq.
-            {
-                transform.eulerAngles = new Vector3(0, 180, 0);
-            }
         }
-        else // inputH = 0.
+        else // No hay movimiento (inputH = 0)
         {
             anim.SetBool("running", false);
         }
     }
-
 
     private void LaunchAttack()
     {
@@ -167,27 +194,25 @@ public class PlayerController : MonoBehaviour
             canDoubleJump = false;
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && (isGrounded || inCoyoteTime || canDoubleJump) && !isWallSliding)
         {
-            if (isGrounded || inCoyoteTime || canDoubleJump) // Si está en el suelo o tiene doble salto
-            {
-                // Aplicar velocidad de salto
-                rb.velocity = new Vector2(rb.velocity.x, canDoubleJump ? doubleJumpPower : jumpPower);
-                // Activar animación de salto
-                anim.SetBool("jump", true);
+            // Aplicar velocidad de salto
+            rb.velocity = new Vector2(rb.velocity.x, canDoubleJump ? doubleJumpPower : jumpPower);
+            // Activar animación de salto
+            anim.SetBool("jump", true);
 
-                if (!canDoubleJump) // Si está haciendo el primer salto
-                {
-                    audioSource.PlayOneShot(jumpSound, 0.1f);
-                }
-                else // Si está haciendo doble salto
-                {
-                    anim.SetTrigger("doubleJump");
-                    audioSource.PlayOneShot(doubleJumpSound, 0.15f);
-                }
-                canDoubleJump = !canDoubleJump;
+            if (!canDoubleJump) // Si está haciendo el primer salto
+            {
+                audioSource.PlayOneShot(jumpSound, 0.1f);
             }
+            else // Si está haciendo doble salto
+            {
+                anim.SetTrigger("doubleJump");
+                audioSource.PlayOneShot(doubleJumpSound, 0.15f);
+            }
+            canDoubleJump = !canDoubleJump;
         }
+
         // Disminuye la velocidad vertical si se deja de presionar el botón de salto
         if (Input.GetButtonUp("Jump"))
         {
@@ -197,12 +222,59 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.75f);
         }
     }
+    private void WallSlide()
+    {
+        if (isWalled && !isGrounded && (inputH != 0f))
+        {
+            isWallSliding = true;
+            if (rb.velocity.y < -wallSlidingSpeed)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, -wallSlidingSpeed);
+            }
+        }
+        else
+        {
+            isWallSliding = false;
+        }
+    }
+
+    private void WallJump()
+    {
+        if (isWallSliding)
+        {
+            wallJumpingDirection = -transform.forward.z;
+            canWallJump = true;
+
+            CancelInvoke(nameof(StopWallJumping));
+        }
+
+        if (Input.GetButtonDown("Jump") && isWalled && canWallJump)
+        {
+            isWallJumping = true;
+            rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
+            canWallJump = false;
+
+            if (transform.forward.z != wallJumpingDirection)
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 currentRotation = transform.eulerAngles;
+                currentRotation.y = isFacingRight ? 0f : -180f;
+                transform.eulerAngles = currentRotation;
+            }
+
+            Invoke(nameof(StopWallJumping), wallJumpingDuration);
+        }
+    }
+
+    private void StopWallJumping()
+    {
+        isWallJumping = false;
+        canWallJump = false;
+    }
 
     private void GroundCheck()
     {
-        isGrounded = false;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, 0.15f, whatIsGround);
-        if (colliders.Length > 0) isGrounded = true;
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckSize, whatIsGround); ;
 
         anim.SetBool("jump", !isGrounded);
 
@@ -210,6 +282,16 @@ public class PlayerController : MonoBehaviour
         {
             inCoyoteTime = true;
             coyoteTimeCounter = 0;
+        }
+    }
+
+    private void WallCheck()
+    {
+        isWalled = Physics2D.OverlapBox(wallCheck.position, wallCheckSize, 0f, whatIsWall);
+
+        if (isWalled)
+        {
+            canDoubleJump = false;
         }
     }
 
@@ -243,6 +325,17 @@ public class PlayerController : MonoBehaviour
     public void PlayFootstepSound()
     {
         audioSource.PlayOneShot(footstepSound, 0.05f);
+    }
+
+    private void Flip()
+    {
+        if ( (isFacingRight && inputH < 0f) || (!isFacingRight && inputH > 0f) )
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 currentRotation = transform.eulerAngles;
+            currentRotation.y = isFacingRight ? 0f : -180f;
+            transform.eulerAngles = currentRotation;
+        }
     }
 
     public void Respawn()
@@ -280,9 +373,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
-        Gizmos.DrawWireSphere(groundCheck.position, 0.15f);
+
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckSize);
+        Gizmos.DrawWireCube(wallCheck.position, wallCheckSize);
     }
 }
