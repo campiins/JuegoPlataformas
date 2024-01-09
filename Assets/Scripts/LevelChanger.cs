@@ -40,6 +40,11 @@ public class LevelChanger : MonoBehaviour
         FadeToLevel(0);
     }
 
+    public void FadeToCredits()
+    {
+        FadeToLevel(3);
+    }
+
     public void OpenFirstLevel()
     {
         SceneManager.LoadScene(1);
