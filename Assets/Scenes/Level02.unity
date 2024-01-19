@@ -27752,6 +27752,9 @@ MonoBehaviour:
   audioManager: {fileID: 1002250663}
   gameOverScreen: {fileID: 5396702628936782803}
   gameCompletedScreen: {fileID: 1526855740}
+  healthBar: {fileID: 8498435106191786553}
+  livesText: {fileID: 8788518977655349095}
+  scoreText: {fileID: 2565555358108808433}
   enemiesKilled: 0
   gameCompleted: 0
 --- !u!4 &754227536

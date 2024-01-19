@@ -12,12 +12,10 @@ public class EnemyHealthSystem : MonoBehaviour
 
     public event Action OnEnemyDeath;
 
-    private AudioSource audioSource;
     private DamageFlash damageFlash;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         damageFlash = GetComponent<DamageFlash>();
 
         currentHealth = maxHealth;
@@ -66,8 +64,7 @@ public class EnemyHealthSystem : MonoBehaviour
         GameManager.Instance.enemiesKilled++;
         PlayerPrefs.SetInt("enemiesKilled", GameManager.Instance.enemiesKilled);
         // Actualizar texto score
-        PlayerUIManager playerUIManager = FindObjectOfType<PlayerUIManager>();
-        if (playerUIManager != null) playerUIManager.UpdateScore();
+        GameManager.Instance.UpdateScore();
 
         this.gameObject.SetActive(false);
     }

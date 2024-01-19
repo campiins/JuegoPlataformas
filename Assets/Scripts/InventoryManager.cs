@@ -6,22 +6,20 @@ public class InventoryManager : MonoBehaviour
 {
     private static InventoryManager instance;
 
-    public static InventoryManager Instance
-    {
-        get
-        {
-            if (instance == null)
-                Debug.LogError("Inventory Manager is NULL");
-
-            return instance;
-        }
-    }
+    public static InventoryManager Instance { get { return instance; } }
 
     [SerializeField] private List<GameObject> inventory = new List<GameObject>();
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void AddItem(GameObject item)
