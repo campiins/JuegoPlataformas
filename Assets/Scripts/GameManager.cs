@@ -51,15 +51,15 @@ public class GameManager : MonoBehaviour
         CinemachineVirtualCamera virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
         virtualCamera.Follow = PlayerController.Instance.gameObject.transform;
 
-        Debug.Log("Press 'ESC' to return to menu.");
+        //Debug.Log("Press 'ESC' to return to menu.");
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            LevelChanger.Instance.FadeToMenu();
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    LevelChanger.Instance.FadeToMenu();
+        //}
     }
 
     public void GameOver()
