@@ -15,6 +15,7 @@ public class Bat : MonoBehaviour, IEnemyDeath
     [SerializeField] private float attackDamage = 20f;
     [SerializeField] private float attackDistance = 1f;
     [SerializeField] private float attackCooldown = 2f;
+    [SerializeField] private float knockbackForce = 5f;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRadius;
     [SerializeField] private LayerMask whatIsDamageable;
@@ -163,7 +164,7 @@ public class Bat : MonoBehaviour, IEnemyDeath
             {
                 if (col.gameObject.CompareTag("Player"))
                 {
-                    playerHealthSystem.TakeDamage(attackDamage);
+                    playerHealthSystem.TakeDamage(attackDamage, knockbackForce, transform.right);
                 }
             }
             // Iniciar cooldown

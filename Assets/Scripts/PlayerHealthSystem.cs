@@ -13,15 +13,19 @@ public class PlayerHealthSystem : MonoBehaviour
 
     public int lives;
     public float maxHealth;
-    [HideInInspector] public float currentHealth;
-    [HideInInspector] public bool isDead = false;
+    [NonSerialized] public float currentHealth;
+    [NonSerialized] public bool isDead = false;
+
+    [Header("Audio")]
 
     [SerializeField] AudioClip hitSound;
 
     public event Action OnPlayerDeath;
 
     private Rigidbody2D rb;
+    private PlayerController controller;
     private Animator anim;
+    private AudioSource audioSource;
     private DamageFlash damageFlash;
 
     private void Awake()
@@ -34,14 +38,16 @@ public class PlayerHealthSystem : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        rb = GetComponent<Rigidbody2D>();
+        controller = GetComponent<PlayerController>();
+        anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        damageFlash = GetComponent<DamageFlash>();
     }
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        damageFlash = GetComponent<DamageFlash>();
-
         currentHealth = maxHealth;
 
         if (!PlayerPrefs.HasKey("PlayerLives")) // Si no existe la key 'PlayerLives'
@@ -64,10 +70,11 @@ public class PlayerHealthSystem : MonoBehaviour
     public void TakeDamage(float damage)
     {
         anim.SetTrigger("hurt");
-        GetComponent<AudioSource>().PlayOneShot(hitSound, 0.33f);
+        audioSource.PlayOneShot(hitSound, 0.33f);
 
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+
         if (currentHealth <= 0)
         {
             if (lives > 0)
@@ -89,6 +96,53 @@ public class PlayerHealthSystem : MonoBehaviour
         {
             damageFlash.CallDamageFlash();
         }
+    }
+    
+    public void TakeDamage(float damage, float knockbackForce, Vector2 knockbackDirection)
+    {
+        anim.SetTrigger("hurt");
+        audioSource.PlayOneShot(hitSound, 0.33f);
+
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+
+        // Knockback 
+        Knockback(knockbackForce, knockbackDirection);
+
+        if (currentHealth <= 0)
+        {
+            if (lives > 0)
+            {
+                lives--;
+                PlayerPrefs.SetInt("PlayerLives", lives);
+                if (lives <= 0)
+                {
+                    Die();
+                }
+                else
+                {
+                    PlayerController.Instance.Respawn();
+                }
+            }
+        }
+
+        if (damageFlash != null)
+        {
+            damageFlash.CallDamageFlash();
+        }
+    }
+
+    private void Knockback(float knockbackForce, Vector2 knockbackDirection)
+    {
+        controller.isKnockbacked = true;
+        rb.velocity = knockbackDirection.normalized * knockbackForce;
+        StartCoroutine(StopKnockback());
+    }
+
+    private IEnumerator StopKnockback()
+    {
+        yield return new WaitForSeconds(controller.knockbackTime);
+        controller.isKnockbacked = false;
     }
 
     private void Die()

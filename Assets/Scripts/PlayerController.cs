@@ -59,12 +59,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float attackRadius;
     [SerializeField] private LayerMask whatIsDamageable;
 
+    [Header("Knockback")]
+    public float knockbackTime = 0.5f;
+    [NonSerialized] public bool isKnockbacked = false;
+
     [Header("Ground Check")]
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckSize = 0.15f;
     [SerializeField] private LayerMask whatIsGround;
-    [HideInInspector] public bool isGrounded;
+    [NonSerialized] public bool isGrounded;
 
     private Vector3 respawnPoint;
 
@@ -88,15 +92,15 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    void Start()
-    {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         trailRenderer = GetComponent<TrailRenderer>();
         audioSource = GetComponent<AudioSource>();
+    }
 
+    void Start()
+    {
         respawnPoint = transform.position;
     }
 
@@ -125,20 +129,23 @@ public class PlayerController : MonoBehaviour
 
             anim.SetFloat("yVelocity", rb.velocity.y);
 
-            LaunchAttack();
-
-            Jump();
-
-            WallSlide();
-            WallJump();
-
-            if (!isWallSliding && !isWallJumping)
+            if (!isKnockbacked)
             {
-                Movement();
-                Flip();
-            }
+                LaunchAttack();
 
-            Dash();
+                Jump();
+
+                WallSlide();
+                WallJump();
+
+                if (!isWallSliding && !isWallJumping)
+                {
+                    Movement();
+                    Flip();
+                }
+
+                Dash();
+            }
 
             anim.SetBool("wallSliding", isWallSliding);
         }

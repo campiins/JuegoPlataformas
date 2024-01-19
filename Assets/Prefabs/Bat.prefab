@@ -159,7 +159,7 @@ Transform:
   m_GameObject: {fileID: 4203636629296489546}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.75, y: 0, z: 0}
+  m_LocalPosition: {x: 0.33, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -307,11 +307,15 @@ MonoBehaviour:
   attackDamage: 20
   attackDistance: 1
   attackCooldown: 1
+  knockbackForce: 5
   attackPoint: {fileID: 8677194400547219519}
   attackRadius: 0.3
   whatIsDamageable:
     serializedVersion: 2
     m_Bits: 64
+  wingSound: {fileID: 0}
+  attackSound: {fileID: 0}
+  deathSound: {fileID: 0}
 --- !u!114 &9188114492201013614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,8 +332,6 @@ MonoBehaviour:
   maxHealth: 20
   currentHealth: 0
   isDead: 0
-  batDeathSound: {fileID: 0}
-  wizardDeathSound: {fileID: 0}
 --- !u!114 &1425399056205794798
 MonoBehaviour:
   m_ObjectHideFlags: 0
