@@ -105547,8 +105547,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioManager: {fileID: 1002250663}
-  gameOverScreen: {fileID: 0}
+  gameOverScreen: {fileID: 154492832}
   gameCompletedScreen: {fileID: 0}
+  healthBar: {fileID: 938158252}
+  livesText: {fileID: 1551839989}
+  scoreText: {fileID: 621165545}
   enemiesKilled: 0
   gameCompleted: 0
 --- !u!4 &754227536

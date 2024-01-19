@@ -41,7 +41,6 @@ public class PlayerHealthSystem : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         damageFlash = GetComponent<DamageFlash>();
-        PlayerUIManager playerUIManager = GetComponent<PlayerUIManager>();
 
         currentHealth = maxHealth;
 
@@ -59,7 +58,7 @@ public class PlayerHealthSystem : MonoBehaviour
         }
 
         // Actualizar texto de vidas
-        if (playerUIManager != null) playerUIManager.UpdateLives(lives);
+        GameManager.Instance.UpdatePlayerLives(lives);
     }
 
     public void TakeDamage(float damage)

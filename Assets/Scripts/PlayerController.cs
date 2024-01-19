@@ -344,8 +344,7 @@ public class PlayerController : MonoBehaviour
         PlayerHealthSystem.Instance.isDead = false;
         PlayerHealthSystem.Instance.currentHealth = PlayerHealthSystem.Instance.maxHealth;
 
-        PlayerUIManager playerUIManager = GetComponent<PlayerUIManager>();
-        playerUIManager.UpdateLives(PlayerHealthSystem.Instance.lives);
+        GameManager.Instance.UpdatePlayerLives(PlayerHealthSystem.Instance.lives);
     }
 
     public void TriggerDead()

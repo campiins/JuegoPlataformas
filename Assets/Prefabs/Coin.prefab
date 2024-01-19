@@ -101,8 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 1
-  sound: {fileID: 4376553305946291958}
-  coinSound: {fileID: 8300000, guid: d774381f731bc8d479ff66241a42f871, type: 3}
+  sound: {fileID: 0}
 --- !u!61 &3400341729826794270
 BoxCollider2D:
   m_ObjectHideFlags: 0
