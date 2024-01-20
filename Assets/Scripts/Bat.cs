@@ -15,12 +15,14 @@ public class Bat : MonoBehaviour, IEnemyDeath
     [SerializeField] private float attackDamage = 20f;
     [SerializeField] private float attackDistance = 1f;
     [SerializeField] private float attackCooldown = 2f;
-    [SerializeField] private float knockbackForce = 5f;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRadius;
     [SerializeField] private LayerMask whatIsDamageable;
     private bool canAttack = true;
     private float timeSinceLastAttack = 0f;
+
+    [Header("Knockback")]
+    [SerializeField] private float knockbackForce = 150f;
 
     [Header("Audio")]
 
@@ -35,12 +37,14 @@ public class Bat : MonoBehaviour, IEnemyDeath
 
     private Animator anim;
     private AudioSource audioSource;
+    private EnemyHealthSystem healthSystem;
     private PlayerHealthSystem playerHealthSystem;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        healthSystem = GetComponent<EnemyHealthSystem>();
         playerHealthSystem = PlayerHealthSystem.Instance;
 
         currentDestination = waypoints[currentIndex].position;
@@ -50,7 +54,7 @@ public class Bat : MonoBehaviour, IEnemyDeath
 
     void Update()
     {
-        if (isChasing)
+        if (isChasing && !healthSystem.isKnockbacked && !healthSystem.isDead)
         {
             ChasePlayer();
         }
@@ -112,7 +116,7 @@ public class Bat : MonoBehaviour, IEnemyDeath
             float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
             if (distanceToPlayer <= attackDistance)
             {
-                if (canAttack)
+                if (canAttack && !healthSystem.isKnockbacked)
                 {
                     anim.SetBool("attack", true);
                 }
@@ -164,7 +168,8 @@ public class Bat : MonoBehaviour, IEnemyDeath
             {
                 if (col.gameObject.CompareTag("Player"))
                 {
-                    playerHealthSystem.TakeDamage(attackDamage, knockbackForce, transform.right);
+                    Vector2 knockbackDirection = transform.right + (transform.up * 0.25f);
+                    playerHealthSystem.TakeDamage(attackDamage, knockbackForce, knockbackDirection);
                 }
             }
             // Iniciar cooldown

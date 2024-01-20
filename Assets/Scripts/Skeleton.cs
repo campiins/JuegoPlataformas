@@ -20,6 +20,9 @@ public class Skeleton : MonoBehaviour, IEnemyDeath
     private bool canAttack = true;
     private float timeSinceLastAttack = 0f;
 
+    [Header("Knockback")]
+    [SerializeField] private float knockbackForce = 200f;
+
     [Header("Ground Check")]
 
     [SerializeField] private float raycastDistance;
@@ -39,14 +42,14 @@ public class Skeleton : MonoBehaviour, IEnemyDeath
 
     private Animator anim;
     private AudioSource audioSource;
+    private EnemyHealthSystem healthSystem;
     private PlayerHealthSystem playerHealthSystem;
-    private EnemyHealthSystem enemyHealthSystem;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        enemyHealthSystem = GetComponent<EnemyHealthSystem>();
+        healthSystem = GetComponent<EnemyHealthSystem>();
         playerHealthSystem = PlayerHealthSystem.Instance;
 
         currentDestination = waypoints[currentIndex].position;
@@ -59,7 +62,7 @@ public class Skeleton : MonoBehaviour, IEnemyDeath
         RaycastHit2D hit = Physics2D.Raycast(attackPoint.position, Vector2.down, raycastDistance, whatIsGround);
         Debug.DrawRay(attackPoint.position, Vector2.down * raycastDistance, Color.red);
         
-        if (isChasing && !enemyHealthSystem.isDead)
+        if (isChasing && !healthSystem.isDead)
         {
             distanceToPlayer = Vector2.Distance(transform.position, PlayerController.Instance.transform.position);
             ChasePlayer();
@@ -129,7 +132,7 @@ public class Skeleton : MonoBehaviour, IEnemyDeath
         {
             if (distanceToPlayer <= attackDistance)
             {
-                if (canAttack)
+                if (canAttack && !healthSystem.isKnockbacked)
                 {
                     anim.SetBool("attacking", true);
                 }
@@ -176,7 +179,8 @@ public class Skeleton : MonoBehaviour, IEnemyDeath
             {
                 if (col.gameObject.CompareTag("Player"))
                 {
-                    playerHealthSystem.TakeDamage(attackDamage);
+                    Vector2 knockbackDirection = transform.right + (transform.up * 2f);
+                    playerHealthSystem.TakeDamage(attackDamage, knockbackForce, knockbackDirection);
                 }
             }
             // Iniciar cooldown

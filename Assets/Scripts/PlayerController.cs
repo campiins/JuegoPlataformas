@@ -60,7 +60,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask whatIsDamageable;
 
     [Header("Knockback")]
-    public float knockbackTime = 0.5f;
+    [SerializeField] private float knockbackForce = 150f;
+    public float knockbackedTime = 0.5f;
     [NonSerialized] public bool isKnockbacked = false;
 
     [Header("Ground Check")]
@@ -189,7 +190,8 @@ public class PlayerController : MonoBehaviour
             if (col.gameObject.CompareTag("Enemy"))
             {
                 EnemyHealthSystem enemyHealthSystem = col.gameObject.GetComponent<EnemyHealthSystem>();
-                enemyHealthSystem.TakeDamage(attackDamage);
+                Vector2 knockbackDirection = transform.right + transform.up;
+                enemyHealthSystem.TakeDamage(attackDamage, knockbackForce, knockbackDirection);
             }
         }
     }

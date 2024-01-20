@@ -135,14 +135,16 @@ public class PlayerHealthSystem : MonoBehaviour
     private void Knockback(float knockbackForce, Vector2 knockbackDirection)
     {
         controller.isKnockbacked = true;
-        rb.velocity = knockbackDirection.normalized * knockbackForce;
-        StartCoroutine(StopKnockback());
+        Vector2 previousVelocity = rb.velocity;
+        rb.AddForceAtPosition(knockbackDirection * knockbackForce, transform.position);
+        StartCoroutine(StopKnockback(previousVelocity));
     }
 
-    private IEnumerator StopKnockback()
+    private IEnumerator StopKnockback(Vector2 velocity)
     {
-        yield return new WaitForSeconds(controller.knockbackTime);
+        yield return new WaitForSeconds(controller.knockbackedTime);
         controller.isKnockbacked = false;
+        rb.velocity = velocity;
     }
 
     private void Die()

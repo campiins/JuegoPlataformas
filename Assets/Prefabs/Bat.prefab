@@ -307,12 +307,12 @@ MonoBehaviour:
   attackDamage: 20
   attackDistance: 1
   attackCooldown: 1
-  knockbackForce: 5
   attackPoint: {fileID: 8677194400547219519}
   attackRadius: 0.3
   whatIsDamageable:
     serializedVersion: 2
     m_Bits: 64
+  knockbackForce: 5
   wingSound: {fileID: 0}
   attackSound: {fileID: 0}
   deathSound: {fileID: 0}
@@ -330,8 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 1
   maxHealth: 20
-  currentHealth: 0
-  isDead: 0
+  knockbackedTime: 0.5
 --- !u!114 &1425399056205794798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,14 +496,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6362490899093202053}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
