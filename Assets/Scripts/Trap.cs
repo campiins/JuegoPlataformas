@@ -17,14 +17,14 @@ public class Trap : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerHealthSystem playerHealthSystem = GetComponent<PlayerHealthSystem>();
+            PlayerHealthSystem playerHealthSystem = other.GetComponent<PlayerHealthSystem>();
             float damageToPlayer = playerHealthSystem.maxHealth;
             playerHealthSystem.TakeDamage(damageToPlayer);
             audioSource.PlayOneShot(spikeDeathSound, 0.5f);
         }
         else if (other.gameObject.CompareTag("Enemy"))
         {
-            EnemyHealthSystem enemyHealthSystem = GetComponent<EnemyHealthSystem>();
+            EnemyHealthSystem enemyHealthSystem = other.GetComponent<EnemyHealthSystem>();
             float damageToEnemy = enemyHealthSystem.maxHealth;
             enemyHealthSystem.TakeDamage(damageToEnemy);
             audioSource.PlayOneShot(spikeDeathSound, 0.5f);
