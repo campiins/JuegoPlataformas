@@ -312,6 +312,9 @@ MonoBehaviour:
   whatIsDamageable:
     serializedVersion: 2
     m_Bits: 64
+  wingSound: {fileID: 0}
+  attackSound: {fileID: 0}
+  deathSound: {fileID: 0}
 --- !u!114 &9188114492201013614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,8 +331,6 @@ MonoBehaviour:
   maxHealth: 20
   currentHealth: 0
   isDead: 0
-  batDeathSound: {fileID: 0}
-  wizardDeathSound: {fileID: 0}
 --- !u!114 &1425399056205794798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,7 +545,7 @@ AudioSource:
   m_GameObject: {fileID: 6362490899093202053}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8316935324150439849, guid: 772b64f1f04f4a746a18de24cdcccd82, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

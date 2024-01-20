@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredKey: {fileID: 4016862295060757660, guid: d1311fb4b4dadca47a8f974e67c3f224, type: 3}
+  isGameCompletedDoor: 0
+  doorCanvas: {fileID: 0}
 --- !u!212 &8691940492580675703
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -154,7 +156,7 @@ AudioSource:
   m_GameObject: {fileID: 3940791649820080599}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8316935324150439849, guid: 772b64f1f04f4a746a18de24cdcccd82, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
