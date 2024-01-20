@@ -750,7 +750,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66982233}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &66982235
 Camera:
   m_ObjectHideFlags: 0
@@ -109987,6 +109987,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: a451c5dd5ecdf7e45bde88132fd52c5d, type: 3}
     - target: {fileID: 4224608237577696786, guid: e4a03c916a3508d44b61e2b3fc823afe, type: 3}
+      propertyPath: attackRadius
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224608237577696786, guid: e4a03c916a3508d44b61e2b3fc823afe, type: 3}
+      propertyPath: attackDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224608237577696786, guid: e4a03c916a3508d44b61e2b3fc823afe, type: 3}
+      propertyPath: knockbackForce
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224608237577696786, guid: e4a03c916a3508d44b61e2b3fc823afe, type: 3}
       propertyPath: waypoints.Array.size
       value: 6
       objectReference: {fileID: 0}
@@ -110249,6 +110261,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1544916085387469230, guid: 9ff1584577a27104dbb6534b0ffbaad8, type: 3}
+      propertyPath: knockbackTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3934186414300171507, guid: 9ff1584577a27104dbb6534b0ffbaad8, type: 3}
       propertyPath: healthBar
       value: 

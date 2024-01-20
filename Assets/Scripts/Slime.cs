@@ -20,6 +20,10 @@ public class Slime : MonoBehaviour, IEnemyDeath
     private bool canAttack = true;
     private float timeSinceLastAttack = 0f;
 
+    [Header("Knockback")]
+    [SerializeField] private float knockbackForce = 150f;
+
+
     [Header("Audio")]
 
     [SerializeField] private AudioClip moveSound;
@@ -32,7 +36,7 @@ public class Slime : MonoBehaviour, IEnemyDeath
     private int currentIndex = 0;
 
     private Animator anim;
-    private EnemyHealthSystem enemyHealthSystem;
+    private EnemyHealthSystem healthSystem;
     private AudioSource audioSource;
     private SpriteRenderer spriteRenderer;
     private PlayerHealthSystem playerHealthSystem;
@@ -40,7 +44,7 @@ public class Slime : MonoBehaviour, IEnemyDeath
     void Start()
     {
         anim = GetComponent<Animator>();
-        enemyHealthSystem = GetComponent<EnemyHealthSystem>();
+        healthSystem = GetComponent<EnemyHealthSystem>();
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerHealthSystem = PlayerHealthSystem.Instance;
@@ -51,7 +55,7 @@ public class Slime : MonoBehaviour, IEnemyDeath
 
     void Update()
     {
-        if (isChasing && !enemyHealthSystem.isDead)
+        if (isChasing && !healthSystem.isKnockbacked && !healthSystem.isDead)
         {
             ChasePlayer();
         }
@@ -114,7 +118,8 @@ public class Slime : MonoBehaviour, IEnemyDeath
             {
                 if (col.gameObject.CompareTag("Player"))
                 {
-                    playerHealthSystem.TakeDamage(attackDamage);
+                    Vector2 knockbackDirection = transform.right + (transform.up * 0.5f);
+                    playerHealthSystem.TakeDamage(attackDamage, knockbackForce, knockbackDirection);
                 }
             }
             // Iniciar cooldown
@@ -132,7 +137,7 @@ public class Slime : MonoBehaviour, IEnemyDeath
             float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
             if (distanceToPlayer <= attackDistance)
             {
-                if (canAttack)
+                if (canAttack && !healthSystem.isKnockbacked)
                 {
                     anim.SetBool("attacking", true);
                     spriteRenderer.sortingOrder = 4;
