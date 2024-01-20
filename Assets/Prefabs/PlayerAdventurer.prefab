@@ -207,12 +207,13 @@ MonoBehaviour:
   whatIsDamageable:
     serializedVersion: 2
     m_Bits: 64
+  knockbackForce: 150
+  knockbackedTime: 0.5
   groundCheck: {fileID: 7706697897474973222}
   groundCheckSize: 0.15
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
-  isGrounded: 0
   footstepSound: {fileID: 8300000, guid: 8007055b8165f0e4a9df72e2cc2d5e9f, type: 3}
   swordSound: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
   jumpSound: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
@@ -232,8 +233,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 1
   maxHealth: 125
-  currentHealth: 0
-  isDead: 0
   hitSound: {fileID: 8300000, guid: a96a196422d341e44a887f20b3fd8354, type: 3}
 --- !u!114 &8353822164559143165
 MonoBehaviour:
@@ -561,7 +560,7 @@ AudioSource:
   m_GameObject: {fileID: 5628037498797574607}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8316935324150439849, guid: 772b64f1f04f4a746a18de24cdcccd82, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
