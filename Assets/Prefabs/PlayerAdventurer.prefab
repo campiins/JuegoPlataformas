@@ -193,8 +193,8 @@ MonoBehaviour:
   coyoteTime: 0.1
   dashPower: 15
   dashingTime: 0.25
-  wallSlidingSpeed: 1
-  wallJumpingPower: {x: 10, y: 18}
+  wallSlidingSpeed: 1.5
+  wallJumpingPower: {x: 10, y: 17}
   wallJumpingDuration: 0.4
   wallCheck: {fileID: 6029537979005778102}
   wallCheckSize: {x: 0.4, y: 1.5}
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0d302835da42b49a23289e8b5eee33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 1
+  lives: 3
   maxHealth: 125
   hitSound: {fileID: 8300000, guid: a96a196422d341e44a887f20b3fd8354, type: 3}
 --- !u!114 &8353822164559143165
@@ -519,7 +519,7 @@ TrailRenderer:
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 16384
+      ctime0: 0
       ctime1: 65535
       ctime2: 0
       ctime3: 0
@@ -527,7 +527,7 @@ TrailRenderer:
       ctime5: 0
       ctime6: 0
       ctime7: 0
-      atime0: 16384
+      atime0: 0
       atime1: 65535
       atime2: 0
       atime3: 0
