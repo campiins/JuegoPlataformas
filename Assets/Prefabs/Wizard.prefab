@@ -500,8 +500,8 @@ MonoBehaviour:
   spawnPoint: {fileID: 8672423113604719811}
   attackDelay: 5
   attackDamage: 20
-  throwSpellSound: {fileID: 0}
-  deathSound: {fileID: 0}
+  throwSpellSound: {fileID: 8300000, guid: 8dea1463a7c996e46a01058dd6e742bb, type: 3}
+  deathSound: {fileID: 8300000, guid: f7278c0c079e3f242a82ba06aff61179, type: 3}
 --- !u!114 &8749092587034816359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,8 +516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 1
   maxHealth: 60
-  currentHealth: 0
-  isDead: 0
+  knockbackedTime: 0.5
 --- !u!114 &796160259378682209
 MonoBehaviour:
   m_ObjectHideFlags: 0
