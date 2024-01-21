@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Switch : MonoBehaviour
 {
     [SerializeField] private GameObject ironDoor;
     private bool activated = false;
     private bool isPlayerInSwitch = false;
+
+    [Header("UI")]
+
+    [SerializeField] private Canvas leverCanvas;
+    private Image txtBackground;
+    private TMP_Text leverTxt;
 
     private Animator anim;
     private AudioSource audioSource;
@@ -15,18 +23,32 @@ public class Switch : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+
+        txtBackground = leverCanvas.GetComponentInChildren<Image>();
+        leverTxt = txtBackground.gameObject.GetComponentInChildren<TMP_Text>();
+        txtBackground.gameObject.SetActive(false);
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Activate();
+        }
+    }
+
+    private void Activate()
+    {
         if (isPlayerInSwitch && !activated)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            activated = true;
+            audioSource.Play();
+            anim.SetBool("active", true);
+            OpenIronDoor();
+
+            if (txtBackground != null)
             {
-                activated = true;
-                audioSource.Play();
-                anim.SetBool("active", true);
-                OpenIronDoor();
+                txtBackground.gameObject.SetActive(false);
             }
         }
     }
@@ -37,6 +59,15 @@ public class Switch : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isPlayerInSwitch = true;
+            if (!activated)
+            {
+                if (txtBackground != null && leverTxt != null)
+                {
+                    txtBackground.gameObject.SetActive(true);
+                    leverTxt.text = "[E]";
+                }
+                Debug.Log("Press 'E' to activate the lever.");
+            }
         }
     }
 
@@ -44,6 +75,10 @@ public class Switch : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            if (txtBackground != null)
+            {
+                txtBackground.gameObject.SetActive(false);
+            }
             isPlayerInSwitch = false;
         }
     }

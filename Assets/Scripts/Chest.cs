@@ -14,9 +14,9 @@ public class Chest : MonoBehaviour
 
     [Header("UI")]
 
-    [SerializeField] private Canvas doorCanvas;
-    private Image doorTxtBackground;
-    private TMP_Text doorTxt;
+    [SerializeField] private Canvas chestCanvas;
+    private Image chestTxtBackground;
+    private TMP_Text chestTxt;
 
     private Animator anim;
 
@@ -25,9 +25,9 @@ public class Chest : MonoBehaviour
         anim = GetComponent<Animator>();
         offset = new Vector3(0.033f, 1f, transform.position.z);
 
-        doorTxtBackground = doorCanvas.GetComponentInChildren<Image>();
-        doorTxt = doorTxtBackground.gameObject.GetComponentInChildren<TMP_Text>();
-        doorTxtBackground.gameObject.SetActive(false);
+        chestTxtBackground = chestCanvas.GetComponentInChildren<Image>();
+        chestTxt = chestTxtBackground.gameObject.GetComponentInChildren<TMP_Text>();
+        chestTxtBackground.gameObject.SetActive(false);
     }
 
     void Update()
@@ -49,9 +49,9 @@ public class Chest : MonoBehaviour
         Instantiate(chestItem, transform.position + offset, Quaternion.identity);
         GameManager.Instance.audioManager.PlayKeySound();
         InventoryManager.Instance.AddItem(chestItem);
-        if (doorTxtBackground != null)
+        if (chestTxtBackground != null)
         {
-            doorTxtBackground.gameObject.SetActive(false);
+            chestTxtBackground.gameObject.SetActive(false);
         }
     }
 
@@ -62,10 +62,10 @@ public class Chest : MonoBehaviour
             isPlayerInChest = true;
             if (!opened)
             {
-                if (doorTxtBackground != null && doorTxt != null)
+                if (chestTxtBackground != null && chestTxt != null)
                 {
-                    doorTxtBackground.gameObject.SetActive(true);
-                    doorTxt.text = "Press 'E' to open the chest.";
+                    chestTxtBackground.gameObject.SetActive(true);
+                    chestTxt.text = "Press 'E' to open the chest.";
                 }
                 Debug.Log("Press 'E' to open the chest.");
             }
@@ -76,9 +76,9 @@ public class Chest : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (doorTxtBackground != null)
+            if (chestTxtBackground != null)
             {
-                doorTxtBackground.gameObject.SetActive(false);
+                chestTxtBackground.gameObject.SetActive(false);
             }
             isPlayerInChest = false;
         }
