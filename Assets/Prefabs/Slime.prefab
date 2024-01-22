@@ -548,9 +548,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   knockbackForce: 150
-  moveSound: {fileID: 0}
-  attackSound: {fileID: 0}
-  deathSound: {fileID: 0}
+  moveSound: {fileID: 8300000, guid: f019178daef14a14d9214a48d47b2f11, type: 3}
+  attackSound: {fileID: 8300000, guid: 7f891a497f8171a4a8726501dc62dbbc, type: 3}
+  deathSound: {fileID: 8300000, guid: e8e4d4670a369ec4f9e05ada7da2b301, type: 3}
 --- !u!114 &7042687889286894580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -792,7 +792,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

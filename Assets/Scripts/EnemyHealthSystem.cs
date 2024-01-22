@@ -63,14 +63,10 @@ public class EnemyHealthSystem : MonoBehaviour
             if (lives > 0)
             {
                 lives--;
-                PlayerPrefs.SetInt("PlayerLives", lives);
                 if (lives <= 0)
                 {
-                    Die();
-                }
-                else
-                {
-                    PlayerController.Instance.Respawn();
+                    isDead = true;
+                    ActivateDeathAnimation();
                 }
             }
         }
@@ -117,7 +113,6 @@ public class EnemyHealthSystem : MonoBehaviour
         PlayerPrefs.SetInt("enemiesKilled", GameManager.Instance.enemiesKilled);
         // Actualizar texto score
         GameManager.Instance.UpdateScore();
-
         this.gameObject.SetActive(false);
     }
 }
