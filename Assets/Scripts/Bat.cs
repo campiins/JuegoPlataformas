@@ -161,7 +161,7 @@ public class Bat : MonoBehaviour, IEnemyDeath
     {
         if (canAttack)
         {
-            audioSource.PlayOneShot(attackSound, 0.9f);
+            audioSource.PlayOneShot(attackSound, 1f);
             // Lanzar Trigger
             Collider2D[] collidersHit = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, whatIsDamageable);
             foreach (Collider2D col in collidersHit)
@@ -187,7 +187,7 @@ public class Bat : MonoBehaviour, IEnemyDeath
     // Se ejecuta desde evento de animación.
     public void PlayWingSound()
     {
-        audioSource.PlayOneShot(wingSound, 0.8f);
+        audioSource.PlayOneShot(wingSound, 1f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
