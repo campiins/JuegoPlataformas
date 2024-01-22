@@ -623,7 +623,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DONE BY
+  m_text: MADE BY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e09a17562f8949a46addffe5da553d14, type: 2}
   m_sharedMaterial: {fileID: -2346841571481111677, guid: e09a17562f8949a46addffe5da553d14, type: 2}
@@ -1314,7 +1314,7 @@ GameObject:
   - component: {fileID: 1104887089}
   - component: {fileID: 1104887088}
   m_Layer: 5
-  m_Name: Name1
+  m_Name: Team
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1903,7 +1903,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -20}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1472046241
 MonoBehaviour:
@@ -1991,7 +1991,7 @@ GameObject:
   - component: {fileID: 1731924274}
   - component: {fileID: 1731924273}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BatImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2202,7 +2202,7 @@ GameObject:
   - component: {fileID: 1869120610}
   - component: {fileID: 1869120609}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: SlimeImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2776,8 +2776,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 110
-  m_fontSizeBase: 110
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2852,8 +2852,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.66546816, g: 0.84475994, b: 0.8773585, a: 1}
-    m_PressedColor: {r: 0.46788892, g: 0.69462436, b: 0.735849, a: 1}
+    m_HighlightedColor: {r: 0.9811321, g: 0.8272854, b: 0.18882161, a: 1}
+    m_PressedColor: {r: 0.9433962, g: 0.72860783, b: 0.13705942, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -2918,7 +2918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7960785, g: 0.95294124, b: 0.9843138, a: 1}
+  m_Color: {r: 0.9803922, g: 0.82745105, b: 0.18823531, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3188,10 +3188,10 @@ RectTransform:
   - {fileID: 4504198809032197288}
   m_Father: {fileID: 8444226144450381217}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -705.39526, y: -410}
-  m_SizeDelta: {x: 467.2095, y: 124.8775}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 300, y: 130}
+  m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
