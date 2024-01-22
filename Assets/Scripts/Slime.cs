@@ -111,7 +111,7 @@ public class Slime : MonoBehaviour, IEnemyDeath
     {
         if (canAttack)
         {
-            audioSource.PlayOneShot(attackSound, 0.8f);
+            audioSource.PlayOneShot(attackSound, 1f);
             // Lanzar Trigger
             Collider2D[] collidersHit = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, whatIsDamageable);
             foreach (Collider2D col in collidersHit)
@@ -186,7 +186,7 @@ public class Slime : MonoBehaviour, IEnemyDeath
     // Se ejecuta desde evento de animación.
     public void PlayMoveSound()
     {
-        audioSource.PlayOneShot(moveSound, 0.2f);
+        audioSource.PlayOneShot(moveSound, 0.67f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -227,7 +227,7 @@ public class Slime : MonoBehaviour, IEnemyDeath
         {
             anim.SetBool("attacking", false);
             anim.SetBool("death", true);
-            audioSource.PlayOneShot(deathSound, 0.5f);
+            audioSource.PlayOneShot(deathSound, 0.67f);
         }
     }
 }

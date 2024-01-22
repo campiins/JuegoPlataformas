@@ -185,6 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chestItem: {fileID: 6888057126448706895, guid: d1311fb4b4dadca47a8f974e67c3f224, type: 3}
   chestDelay: 0.1
+  chestCanvas: {fileID: 1004097807471345829}
 --- !u!212 &3718396864047123322
 SpriteRenderer:
   m_ObjectHideFlags: 0
