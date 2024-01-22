@@ -190,7 +190,7 @@ public class PlayerController : MonoBehaviour
             if (col.gameObject.CompareTag("Enemy"))
             {
                 EnemyHealthSystem enemyHealthSystem = col.gameObject.GetComponent<EnemyHealthSystem>();
-                Vector2 knockbackDirection = transform.right + transform.up;
+                Vector2 knockbackDirection = transform.right + transform.up * 0.5f;
                 enemyHealthSystem.TakeDamage(attackDamage, knockbackForce, knockbackDirection);
             }
         }
