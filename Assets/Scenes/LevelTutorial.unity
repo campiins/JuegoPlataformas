@@ -35886,7 +35886,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 0, y: -118.75}
   m_SizeDelta: {x: 800, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &857834181
@@ -37466,7 +37466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6182add31ee7374bae4e2761d4bac8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgMusic: {fileID: 8300000, guid: 79380b461ec550b4c8dd943b47b59dba, type: 3}
+  bgMusic: {fileID: 8300000, guid: fcb6d1b9ddf36724b95deaf4f46fc1bb, type: 3}
 --- !u!4 &1016391373 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2475769149743163130, guid: f144214b55c6f75488fc6d390d343b4a, type: 3}
@@ -39979,7 +39979,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 250}
+  m_AnchoredPosition: {x: 0, y: 81.25}
   m_SizeDelta: {x: 1000, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1353395221
@@ -43650,7 +43650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1881303414
 RectTransform:
   m_ObjectHideFlags: 0
@@ -45115,7 +45115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2062143167
 RectTransform:
   m_ObjectHideFlags: 0

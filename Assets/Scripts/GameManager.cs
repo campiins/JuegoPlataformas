@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -88,7 +89,14 @@ public class GameManager : MonoBehaviour
         if (gameOverScreen != null)
         {
             gameOverScreen.Setup(enemiesKilled);
+            StartCoroutine(ShowCredits());
         }
+    }
+
+    private IEnumerator ShowCredits()
+    {
+        yield return new WaitForSeconds(5f);
+        FindFirstObjectByType<LevelChanger>().FadeToCredits();
     }
 
     public void GameCompleted()
