@@ -30,11 +30,11 @@ public class LevelChanger : MonoBehaviour
         FadeToLevel(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    //public void FadeToLastLevel()
-    //{
-    //    PublicTimer.timePlayed = 0;
-    //    FadeToLevel(SceneManager.GetActiveScene().buildIndex - 1);
-    //}
+    public void FadeToPreviousLevel()
+    {
+        PublicTimer.timePlayed = 0;
+        FadeToLevel(SceneManager.GetActiveScene().buildIndex - 1);
+    }
 
     public void FadeToMenu()
     {
@@ -45,7 +45,7 @@ public class LevelChanger : MonoBehaviour
     public void FadeToCredits()
     {
         PublicTimer.timePlayed = 0;
-        FadeToLevel(3);
+        FadeToLevel(SceneManager.sceneCountInBuildSettings - 1);
     }
 
     public void OpenFirstLevel()
