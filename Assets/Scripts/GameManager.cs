@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,8 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text livesText;
     [SerializeField] private TMP_Text scoreText;
 
-    [HideInInspector] public int enemiesKilled = 0;
-    [HideInInspector] public bool gameCompleted = false;
+    [NonSerialized] public int score = 0;
+    [NonSerialized] public bool gameCompleted = false;
 
     private PlayerHealthSystem playerHealthSystem;
 
@@ -39,9 +40,9 @@ public class GameManager : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().buildIndex > 1)
             {
-                enemiesKilled = PlayerPrefs.GetInt("enemiesKilled");
+                score = PlayerPrefs.GetInt("enemiesKilled");
                 // Actualizar texto score
-                UpdateScore();
+                UpdateScoreText();
             }
             else
             {
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetInt("enemiesKilled", enemiesKilled);
+            PlayerPrefs.SetInt("enemiesKilled", score);
         }
     }
 
@@ -64,8 +65,6 @@ public class GameManager : MonoBehaviour
         healthBar.maxValue = playerHealthSystem.maxHealth;
 
         playerHealthSystem.OnPlayerDeath += HandlePlayerDeath;
-
-        //Debug.Log("Press 'ESC' to return to menu.");
     }
 
     void Update()
@@ -76,19 +75,13 @@ public class GameManager : MonoBehaviour
         {
             healthBar.value = playerHealth;
         }
-
-        // Volver al menú principal
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    LevelChanger.Instance.FadeToMenu();
-        //}
     }
 
     public void GameOver()
     {
         if (gameOverScreen != null)
         {
-            gameOverScreen.Setup(enemiesKilled);
+            gameOverScreen.Setup(score);
             StartCoroutine(ShowCredits());
         }
     }
@@ -106,13 +99,14 @@ public class GameManager : MonoBehaviour
         PlayerController.Instance.GetComponent<Animator>().SetBool("running", false);
         if (gameCompletedScreen != null)
         {
-            gameCompletedScreen.Setup(enemiesKilled);
+            gameCompletedScreen.Setup(score);
         }
     }
 
-    public void UpdateScore()
+    public void UpdateScoreText()
     {
-        scoreText.text = "Kills: " + enemiesKilled.ToString();
+        PlayerPrefs.SetInt("enemiesKilled", score);
+        scoreText.text = "Score: " + score.ToString();
     }
 
     public void UpdatePlayerLives(int lives)

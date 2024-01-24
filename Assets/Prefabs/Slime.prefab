@@ -566,6 +566,7 @@ MonoBehaviour:
   lives: 1
   maxHealth: 40
   knockbackedTime: 0.5
+  scoreOnDeath: 2
 --- !u!114 &4037315461778590946
 MonoBehaviour:
   m_ObjectHideFlags: 0

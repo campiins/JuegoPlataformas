@@ -564,6 +564,7 @@ MonoBehaviour:
   whatIsDamageable:
     serializedVersion: 2
     m_Bits: 64
+  knockbackForce: 200
   raycastDistance: 2
   whatIsGround:
     serializedVersion: 2
@@ -585,8 +586,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 1
   maxHealth: 80
-  currentHealth: 0
-  isDead: 0
+  knockbackedTime: 0.5
+  scoreOnDeath: 5
 --- !u!114 &578356008448465004
 MonoBehaviour:
   m_ObjectHideFlags: 0

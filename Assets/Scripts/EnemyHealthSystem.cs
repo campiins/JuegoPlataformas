@@ -15,6 +15,7 @@ public class EnemyHealthSystem : MonoBehaviour
     [NonSerialized] public bool isKnockbacked = false;
 
     public event Action OnEnemyDeath;
+    [SerializeField] private int scoreOnDeath = 1; // Valor por defecto
 
     private Rigidbody2D rb;
     private DamageFlash damageFlash;
@@ -109,10 +110,9 @@ public class EnemyHealthSystem : MonoBehaviour
     {
         OnEnemyDeath?.Invoke();
 
-        GameManager.Instance.enemiesKilled++;
-        PlayerPrefs.SetInt("enemiesKilled", GameManager.Instance.enemiesKilled);
+        GameManager.Instance.score += scoreOnDeath;
         // Actualizar texto score
-        GameManager.Instance.UpdateScore();
+        GameManager.Instance.UpdateScoreText();
         this.gameObject.SetActive(false);
     }
 }
